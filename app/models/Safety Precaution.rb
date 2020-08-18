@@ -1,3 +1,3 @@
 class SafetyPrecaution < ActiveRecord::Base
-    # add associatons!
-  end
+  has_many: restaurants
+end
