@@ -12,8 +12,9 @@ end
 
 desc "start our app"
 task :start do
-  app = nameOfYourApp.new
-  app.run
+  Interface.new.welcome
+  # app = nameOfYourApp.new
+  # app.run
 end
 
 namespace :remind_me_about do
