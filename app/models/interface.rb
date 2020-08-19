@@ -77,8 +77,12 @@ class Interface
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
      def see_chosen_reservation(chosen_reservation_instance)
-    #     puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
-        
+        puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
+            prompt.select("What would you like to do?") do |menu|
+                menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
+                menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
+                menu.choice "back", -> {self.main_menu}
+        end
     
      end
 
@@ -168,17 +172,29 @@ class Interface
        
 
         prompt.select("What would you like to do?") do |menu|
-            menu.choice "make a reservation", -> {reservation_confirmation(highlighted_restaurant)}
-            menu.choice "go back", -> {self.main_menu}
+            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant)}
+            menu.choice "Go back", -> {self.main_menu}
         end
     end
 
     def reservation_confirmation(dinner_reservation)
         
         dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards)")
-        #dinner_date = TTY::Prompt.new.ask("Which date? This date is date dataype")
-        #Reservation.create(party_size: dinner_party, dinner_date: ____)
+        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM ")
+        Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: self.id, restaurant_id: dinner_reservation.id  )
+
+        
         self.main_menu
+    end
+
+        
+
+    def covid_precautions
+        first_safety
+
+
+
+
     end
 
 
