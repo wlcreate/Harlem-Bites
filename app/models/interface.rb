@@ -183,22 +183,37 @@ class Interface
         dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM ")
         Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: self.id, restaurant_id: dinner_reservation.id  )
 
+        puts #####################################################################################
+        puts "Cleaning and Sanitizing"
+        puts "✅Surfaces sanitized between seatings"
+        puts "✅Common areas deep cleaned daily"
+        puts "✅Digital, disposable or sanitized menu provided"
+        puts "✅Sanitizer or wipes provided for customers"
+        puts "✅Contactless payment available"
+        puts "✅Sealed or wrapped utensils used"
+
         
+        puts######################################################################################
+        puts "Social Distancing"
+        puts "✅Limited number of seated diners"
+        puts "✅Distancing mantained in common areas"
+        puts "✅Extra space between tables"
+        
+        puts #####################################################################################
+        puts "PPE"
+        puts "✅Waitstaff wear masks")
+        
+        puts #####################################################################################
         self.main_menu
     end
 
         
 
-    def covid_precautions
-        first_safety
+    # def covid_precautions
+    #     first_safety
+    # end
 
 
-
-
-    end
-
-def creating
-end
 
 
 ###here is a comment test

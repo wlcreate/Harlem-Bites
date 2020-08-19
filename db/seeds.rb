@@ -28,7 +28,7 @@ restaurant10 = Restaurant.create(name: "Amor Cubano", seating_capacity: rand(1..
 
 
 #Safety Precaution instances
-first_safety = SafetyPrecaution.create(cleaning_sanitizing: "Surfaces sanitized between seatings", social_distancing:"Limited number of seated diners", ppe: "Waitstaff wear masks")
+# first_safety = SafetyPrecaution.create(cleaning_sanitizing: "Surfaces sanitized between seatings", social_distancing:"Limited number of seated diners", ppe: "Waitstaff wear masks")
 
 
 puts "🐰🐰🐰🐰🐰🐰🐰🐰"
