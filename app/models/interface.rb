@@ -77,8 +77,12 @@ class Interface
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
      def see_chosen_reservation(chosen_reservation_instance)
-    #     puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
-        
+        puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
+            prompt.select("What would you like to do?") do |menu|
+                menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
+                menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
+                menu.choice "back", -> {self.main_menu}
+        end
     
      end
 
@@ -136,8 +140,8 @@ class Interface
         #Restaurant.all => all the restaurants
         #to just get the name we need to map(?) restaurant_instance.name
 
-        choice = prompt.select("What restaurant do you want to see?", Restaurant.all_names)
-        display_restaurant_info(choice)
+        choice_restaurant = prompt.select("What restaurant do you want to see?", Restaurant.all_names)
+        display_restaurant_info(choice_restaurant)
         
     end
 
@@ -145,34 +149,57 @@ class Interface
     #then ask the user if they want to make a reservation
     #options: show all info, make res, or go back
     def display_restaurant_info(choice)
-        #Sylwia's way
-        all_choices = ["view restaurant details", "make a reservation", "go back"]
-        choice = prompt.select("What do you want do?", all_choices)
-        if choice == "view restaurant details"
-          puts "#{choice.restaurant.name}"
-          puts "#{choice.restaurant.seating_capacity}: Tables available due to COVID-19"
-          puts "#{choice.restaurant.address}"
-          puts "#{choice.restaurant.telephone}"
-          puts "#{choice.restaurant.cuisine}"
-          puts "#{choice.restaurant.pricey}"
-          puts "#{choice.restaurant.stars}"
-          
-        # elsif choice == "cancel"
-        #   delete_reservation(chosen_reservation_instance)
-        # elsif choice == "back"
-        #     self.main_menu
+        #our choice is only returning the name of the restaurant. not the instance created
+        #we are now going to do Restaurant.find_by(name: choice) and save this to a variable
+        highlighted_restaurant = Restaurant.find_by(name: choice)
+        # binding.pry
+
+       
+
+        puts ###############################################################################
+        puts "#{highlighted_restaurant.name}"
+        puts "#{highlighted_restaurant.stars}"
+        puts ###############################################################################
+        puts "🌃: #{highlighted_restaurant.address}"
+        puts "🥂: #{highlighted_restaurant.telephone}"
+        puts "🍽:  #{highlighted_restaurant.cuisine}"
+        puts "💸: #{highlighted_restaurant.pricey}"
+        
+
+        puts "❗️❗️ Tables available due to COVID-19: #{highlighted_restaurant.seating_capacity} ❗️❗️" 
+
+        puts #################################################################################
+       
+
+        prompt.select("What would you like to do?") do |menu|
+            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant)}
+            menu.choice "Go back", -> {self.main_menu}
         end
-        #github zoom
-
-        def soomething
-        end 
-
-        # #Eric's way - I'm pretty sure this is the same
-        # prompt.select("What would you like to do?") do |menu|
-        #     menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
-        #     menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
-        #     menu.choice "back", -> {self.main_menu}
-        # end
     end
+
+    def reservation_confirmation(dinner_reservation)
+        
+        dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards)")
+        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM ")
+        Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: self.id, restaurant_id: dinner_reservation.id  )
+
+        
+        self.main_menu
+    end
+
+        
+
+    def covid_precautions
+        first_safety
+
+
+
+
+    end
+
+
+
+
+
 
 end
