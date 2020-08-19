@@ -104,10 +104,9 @@ class Interface
         #code for updating
         prompt.select("What would you like to update?") do |menu|
             menu.choice "date", -> {choose_new_date(chosen_reservation_instance)}
-            menu.choice "party size", -> {chosen_reservation_instance.party_size }
+            menu.choice "party size", -> {choose_new_party(chosen_reservation_instance)}
             menu.choice "back", -> {self.main_menu}
         end
-        puts "updated!"
     end
 
     #updates the reservation date/time
@@ -116,22 +115,34 @@ class Interface
         #How can we restrict a user from only updating something ONE time?
         chosen_reservation_instance.update(date: new_date)
         puts "New date confirmed!"
+        puts "Please arrive 15 minutes prior and due to COVID-19 there is a 2 hour window on dining"
+        sleep 3
         self.main_menu
     end
 
+    #updates the reservation party_size
     def choose_new_party(chosen_reservation_instance)
         new_party = TTY::Prompt.new.ask("How many for dinner? Please note that you can only change this once")
         chosen_reservation_instance.update(party_size: new_party)
         puts "New party size confirmed!"
+        sleep 3
         self.main_menu
     end
 
     #deletes the chosen reservation
     def delete_reservation(chosen_reservation_instance)
         #code for deleting
-        puts
-        prompt.yes?("Do you want to cancel this reservation?")
-        puts "cancelled"
+        response = prompt.yes?("Do you want to cancel this reservation?")
+        if response == true
+            chosen_reservation_instance.destroy
+            puts "Your reservation is cancelled 😭"
+            sleep 5
+            self.main_menu
+        else
+            puts "Phew! We can't wait to see you!"
+            sleep 5
+            self.main_menu
+        end
     end
 
     #displays all of the restaurants
