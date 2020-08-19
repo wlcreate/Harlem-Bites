@@ -162,6 +162,10 @@ class Interface
         # elsif choice == "back"
         #     self.main_menu
         end
+        #github zoom
+
+        def soomething
+        end 
 
         # #Eric's way - I'm pretty sure this is the same
         # prompt.select("What would you like to do?") do |menu|
