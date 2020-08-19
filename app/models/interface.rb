@@ -198,10 +198,12 @@ class Interface
         puts "✅Limited number of seated diners"
         puts "✅Distancing mantained in common areas"
         puts "✅Extra space between tables"
+        puts "✅Sick staff prohibited in the workplace"
         
         puts #####################################################################################
         puts "PPE"
-        puts "✅Waitstaff wear masks")
+        puts "✅Waitstaff wear masks"
+        puts "✅Diners must wear masks unless eating or drinking"
         
         puts #####################################################################################
         self.main_menu
