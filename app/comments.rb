@@ -9,6 +9,12 @@
     #         self.main_menu
     #     end
 
+    # #Eric's way - I'm pretty sure this is the same
+        # prompt.select("What would you like to do?") do |menu|
+        #     menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
+        #     menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
+        #     menu.choice "back", -> {self.main_menu}
+        # end
 
 
      #displays all of the restaurants
