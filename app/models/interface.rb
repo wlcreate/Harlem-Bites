@@ -76,27 +76,27 @@ class Interface
     #displays the chosen reservation
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
-    def see_chosen_reservation(chosen_reservation_instance)
-        puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
+    # def see_chosen_reservation(chosen_reservation_instance)
+    #     puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
         
-        #Sylwia's way
-        all_choices = ["update", "cancel", "back"]
-        choice = prompt.select("What do you want do?", all_choices)
-        if choice == "update"
-          update_reservation(chosen_reservation_instance)
-        elsif choice == "cancel"
-          delete_reservation(chosen_reservation_instance)
-        elsif choice == "back"
-            self.main_menu
-        end
+    #     #Sylwia's way
+    #     all_choices = ["update", "cancel", "back"]
+    #     choice = prompt.select("What do you want do?", all_choices)
+    #     if choice == "update"
+    #       update_reservation(chosen_reservation_instance)
+    #     elsif choice == "cancel"
+    #       delete_reservation(chosen_reservation_instance)
+    #     elsif choice == "back"
+    #         self.main_menu
+    #     end
 
-        # #Eric's way - I'm pretty sure this is the same
-        # prompt.select("What would you like to do?") do |menu|
-        #     menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
-        #     menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
-        #     menu.choice "back", -> {self.main_menu}
-        # end
-    end
+    #     # #Eric's way - I'm pretty sure this is the same
+    #     # prompt.select("What would you like to do?") do |menu|
+    #     #     menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
+    #     #     menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
+    #     #     menu.choice "back", -> {self.main_menu}
+    #     # end
+    # end
 
      #updates the chosen reservation
      #can choose to update the date and/or the party_size
@@ -148,26 +148,26 @@ class Interface
     #displays all of the restaurants
     #creates a new reservation
     #Note: I think that this can be refractored, perhaps can look at above to see where/how - Wave
-    def display_and_add_reservations_helper
-        # Restaurant.all_names is defined in the Restaurant class and shows all restaurants => [{name => id}, {name => id}]
-        chosen_restaurant_id = prompt.select("View all of our participating restaurants", Restaurant.all_names)
+    # def display_and_add_reservations_helper
+    #     # Restaurant.all_names is defined in the Restaurant class and shows all restaurants => [{name => id}, {name => id}]
+    #     chosen_restaurant_id = prompt.select("View all of our participating restaurants", Restaurant.all_names)
 
-        #Need to display the "more information" about the chosen restaurant
+    #     #Need to display the "more information" about the chosen restaurant
 
-        #after seeing more information about a restaurant, ask if user wants to make a reservation
-        #if yes, create a new reservation
-        #if no, bring back to see all restaurants or go to main menu
-        if prompt.yes?("Do you want to make a reservation?")
-            reservation_date = TTY::Prompt.new.ask("What date and time would you like to dine?") #haha I rhymed
-            reservation_party_size = TTY::Prompt.new.ask("How many people?")
-            new_reservation = Reservation.create(guest_id: self.user.id, restaurant_id: chosen_restaurant_id, date: reservation_date, party_size: reservation_party_size)
-        else
-            prompt.select("What would you like to do?") do |menu|
-                menu.choice "Go back to all restaurants", -> {display_and_add_reservations_helper}
-                menu.choice "Go back to main menu", -> { self.main_menu }
-            end
-        end
-    end
+    #     #after seeing more information about a restaurant, ask if user wants to make a reservation
+    #     #if yes, create a new reservation
+    #     #if no, bring back to see all restaurants or go to main menu
+    #     if prompt.yes?("Do you want to make a reservation?")
+    #         reservation_date = TTY::Prompt.new.ask("What date and time would you like to dine?") #haha I rhymed
+    #         reservation_party_size = TTY::Prompt.new.ask("How many people?")
+    #         new_reservation = Reservation.create(guest_id: self.user.id, restaurant_id: chosen_restaurant_id, date: reservation_date, party_size: reservation_party_size)
+    #     else
+    #         prompt.select("What would you like to do?") do |menu|
+    #             menu.choice "Go back to all restaurants", -> {display_and_add_reservations_helper}
+    #             menu.choice "Go back to main menu", -> { self.main_menu }
+    #         end
+    #     end
+    # end
 
     #show the listing of the restaurants to the user
     #save the user's choice to then bring to display_restaurant_info
@@ -196,7 +196,7 @@ class Interface
           puts "#{choice.restaurant.cuisine}"
           puts "#{choice.restaurant.pricey}"
           puts "#{choice.restaurant.stars}"
-          #debating hours time
+          
         # elsif choice == "cancel"
         #   delete_reservation(chosen_reservation_instance)
         # elsif choice == "back"
