@@ -169,4 +169,45 @@ class Interface
         end
     end
 
+    #show the listing of the restaurants to the user
+    #save the user's choice to then bring to display_restaurant_info
+    def display_all_restaurants_helper
+        #all_choices should be an array of all of the Restaurant names
+        #Restaurant.all => all the restaurants
+        #to just get the name we need to map(?) restaurant_instance.name
+
+        choice = prompt.select("What restaurant do you want to see?", Restaurant.all_names)
+        display_restaurant_info(choice)
+        
+    end
+
+    #show the user more information about the restaurant they chose
+    #then ask the user if they want to make a reservation
+    #options: show all info, make res, or go back
+    def display_restaurant_info(choice)
+        #Sylwia's way
+        all_choices = ["view restaurant details", "make a reservation", "go back"]
+        choice = prompt.select("What do you want do?", all_choices)
+        if choice == "view restaurant details"
+          puts "#{choice.restaurant.name}"
+          puts "#{choice.restaurant.seating_capacity}: Tables available due to COVID-19"
+          puts "#{choice.restaurant.address}"
+          puts "#{choice.restaurant.telephone}"
+          puts "#{choice.restaurant.cuisine}"
+          puts "#{choice.restaurant.pricey}"
+          puts "#{choice.restaurant.stars}"
+        # elsif choice == "cancel"
+        #   delete_reservation(chosen_reservation_instance)
+        # elsif choice == "back"
+        #     self.main_menu
+        end
+
+        # #Eric's way - I'm pretty sure this is the same
+        # prompt.select("What would you like to do?") do |menu|
+        #     menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
+        #     menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
+        #     menu.choice "back", -> {self.main_menu}
+        # end
+    end
+
 end

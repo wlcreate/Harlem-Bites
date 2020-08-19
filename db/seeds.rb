@@ -13,16 +13,7 @@ waverley = User.create(name: "Waverley", phone_number: "(718)986-6758", password
 
 #Restaurant instances
 # NEED TO FIGURE OUT THE TIME DATA TYPE
-# restaurant1 = Restaurant.create(
-#     name: "Seasoned Vegan", 
-#     seating_capacity: rand(1..10), 
-#     address: "55 Saint Nicholas Ave, New York, NY 10026", 
-#     telephone: "(212)222-0092", 
-#     open_time: "17:00:00", 
-#     close_time: "22:00:00", 
-#     cuisine: "Vegan Soul Food", 
-#     pricey: "$$$", 
-#     stars: "⭐️⭐️⭐️⭐️⭐️")
+restaurant1 = Restaurant.create(name: "Seasoned Vegan", seating_capacity: rand(1..10), address: "55 Saint Nicholas Ave, New York, NY 10026", telephone: "(212)222-0092", open_time: "17:00:00", close_time: "22:00:00", cuisine: "Vegan Soul Food", pricey: "$$$", stars: "⭐️⭐️⭐️⭐️⭐️")
 # restaurant2 = Restaurant.create(
 #     name: "The Grange", 
 #     seating_capacity: rand(1..10), 

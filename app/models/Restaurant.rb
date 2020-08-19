@@ -5,7 +5,7 @@ class Restaurant < ActiveRecord::Base
 
   def self.all_names
     Restaurant.all.map do |restaurant_instance|
-      {restaurant_instance.name => restaurant_instance.id}
+      restaurant_instance.name
     end
   end
 
