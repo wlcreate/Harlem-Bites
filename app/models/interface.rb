@@ -75,7 +75,7 @@ class Interface
 
     #displays the chosen reservation
     #asks if the user want to update or cancel the chosen reservation
-    #do we want to display the chosen restaurant's more info again?
+    #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
     def see_chosen_reservation(chosen_reservation_instance)
         puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
         
@@ -102,12 +102,35 @@ class Interface
      #can choose to update the date and/or the party_size
      def update_reservation(chosen_reservation_instance)
         #code for updating
+        prompt.select("What would you like to update?") do |menu|
+            menu.choice "date", -> {choose_new_date(chosen_reservation_instance)}
+            menu.choice "party size", -> {chosen_reservation_instance.party_size }
+            menu.choice "back", -> {self.main_menu}
+        end
         puts "updated!"
+    end
+
+    #updates the reservation date/time
+    def choose_new_date(chosen_reservation_instance)
+        new_date = TTY::Prompt.new.ask("Which date? Please note that you can only change this once")
+        #How can we restrict a user from only updating something ONE time?
+        chosen_reservation_instance.update(date: new_date)
+        puts "New date confirmed!"
+        self.main_menu
+    end
+
+    def choose_new_party(chosen_reservation_instance)
+        new_party = TTY::Prompt.new.ask("How many for dinner? Please note that you can only change this once")
+        chosen_reservation_instance.update(party_size: new_party)
+        puts "New party size confirmed!"
+        self.main_menu
     end
 
     #deletes the chosen reservation
     def delete_reservation(chosen_reservation_instance)
         #code for deleting
+        puts
+        prompt.yes?("Do you want to cancel this reservation?")
         puts "cancelled"
     end
 
@@ -116,7 +139,6 @@ class Interface
     #Note: I think that this can be refractored, perhaps can look at above to see where/how - Wave
     def display_and_add_reservations_helper
         # Restaurant.all_names is defined in the Restaurant class and shows all restaurants => [{name => id}, {name => id}]
-
         chosen_restaurant_id = prompt.select("View all of our participating restaurants", Restaurant.all_names)
 
         #Need to display the "more information" about the chosen restaurant
