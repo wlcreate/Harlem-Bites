@@ -150,20 +150,22 @@ class Interface
         highlighted_restaurant = Restaurant.find_by(name: choice)
         # binding.pry
 
-
+       
 
         puts ###############################################################################
         puts "#{highlighted_restaurant.name}"
-
-        puts "#{highlighted_restaurant.address}"
-        puts "#{highlighted_restaurant.telephone}"
-        puts "Cuisine: #{highlighted_restaurant.cuisine}"
-        puts "#{highlighted_restaurant.pricey}"
         puts "#{highlighted_restaurant.stars}"
+        puts ###############################################################################
+        puts "🌃: #{highlighted_restaurant.address}"
+        puts "🥂: #{highlighted_restaurant.telephone}"
+        puts "🍽:  #{highlighted_restaurant.cuisine}"
+        puts "💸: #{highlighted_restaurant.pricey}"
+        
 
-        puts "❗️ Tables available due to COVID-19: #{highlighted_restaurant.seating_capacity} ❗️" 
+        puts "❗️❗️ Tables available due to COVID-19: #{highlighted_restaurant.seating_capacity} ❗️❗️" 
 
         puts #################################################################################
+       
 
         prompt.select("What would you like to do?") do |menu|
             menu.choice "make a reservation", -> {reservation_confirmation(highlighted_restaurant)}
@@ -176,7 +178,7 @@ class Interface
         dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards)")
         #dinner_date = TTY::Prompt.new.ask("Which date? This date is date dataype")
         #Reservation.create(party_size: dinner_party, dinner_date: ____)
-    
+        self.main_menu
     end
 
 
