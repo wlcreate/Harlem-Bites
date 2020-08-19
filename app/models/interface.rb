@@ -196,6 +196,7 @@ class Interface
           puts "#{choice.restaurant.cuisine}"
           puts "#{choice.restaurant.pricey}"
           puts "#{choice.restaurant.stars}"
+          #debating hours time
         # elsif choice == "cancel"
         #   delete_reservation(chosen_reservation_instance)
         # elsif choice == "back"
