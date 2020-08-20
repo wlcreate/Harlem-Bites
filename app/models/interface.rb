@@ -106,8 +106,8 @@ class Interface
         #name of the restaurant they will be dining at 
         restaurant_chosen = Reservation.all.find(choice_id).restaurant.name
         restaurant_date = Reservation.all.find(choice_id).date
-        puts " 🥂 You have a reservation at #{restaurant_chosen} on #{restaurant_date} 🥂"
-           
+        restaurant_party_size = Reservation.all.find(choice_id).party_size
+        puts " 🥂 You have a reservation for #{restaurant_party_size} at #{restaurant_chosen} on #{restaurant_date} 🥂"
 
         prompt.select("What would you like to do?") do |menu|
                 menu.choice "Update", -> {update_reservation(choice_id)}

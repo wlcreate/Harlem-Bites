@@ -1,14 +1,12 @@
 User.destroy_all
 Restaurant.destroy_all
 Reservation.destroy_all
-SafetyPrecaution.destroy_all
 User.reset_pk_sequence
 Restaurant.reset_pk_sequence
 Reservation.reset_pk_sequence
-SafetyPrecaution.reset_pk_sequence
 
 #User instances
-waverley = User.create(name: "Waverley", phone_number: "(718)986-6758", password: "wavey")
+wavey = User.create(name: "Waverley", phone_number: "(718)986-6758", password: "wavey")
 nunny = User.create(name: "Nunny", phone_number: "(212)222-2222", password: "nico")
 
 #Restaurant instances
@@ -26,11 +24,12 @@ amor = Restaurant.create(name: "Amor Cubano", seating_capacity: rand(1..10), add
 
 #Reservation instances
 rez_1 = Reservation.create(party_size: 3, date: "08/27/2020 6:30pm", user_id: nunny.id, restaurant_id: sylvia.id)
-
-
-
-#Safety Precaution instances
-# first_safety = SafetyPrecaution.create(cleaning_sanitizing: "Surfaces sanitized between seatings", social_distancing:"Limited number of seated diners", ppe: "Waitstaff wear masks")
-
+rez_2 = Reservation.create(party_size: 2, date: "09/05/2020 5:30pm", user_id: nunny.id, restaurant_id: grange.id)
+rez_3 = Reservation.create(party_size: 2, date: "09/12/2020 6:00pm", user_id: nunny.id, restaurant_id: edge.id)
+rez_4 = Reservation.create(party_size: 4, date: "10/14/2020 7:00pm", user_id: nunny.id, restaurant_id: lido.id)
+rez_5 = Reservation.create(party_size: 2, date: "08/27/2020 5:30pm", user_id: wavey.id, restaurant_id: seasoned.id)
+rez_6 = Reservation.create(party_size: 3, date: "09/02/2020 6:00pm", user_id: wavey.id, restaurant_id: sylvia.id)
+rez_7 = Reservation.create(party_size: 3, date: "09/19/2020 6:15pm", user_id: wavey.id, restaurant_id: amor.id)
+rez_8 = Reservation.create(party_size: 4, date: "10/04/2020 7:45pm", user_id: wavey.id, restaurant_id: pub.id)
 
 puts "🐰🐰🐰🐰🐰🐰🐰🐰"
