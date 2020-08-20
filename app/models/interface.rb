@@ -75,10 +75,12 @@ class Interface
     def main_menu
         user.reload #makes sure that we get the most up to date info
         system "clear" #pushes this to the top of the terminal
-        
         puts ###################################################################################################
-        puts "🍕🍕🍕 Welcome to Harlem Bites! 🍕🍕🍕" #our app will change to our app name when we come up with it
-        
+        puts "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
+        puts ###################################################################################################
+        puts "            🌮 🥗 🍕 Welcome to Harlem Bites! 🍕 🥗 🌮" #our app will change to our app name when we come up with it
+        puts ###################################################################################################
+        puts "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
          puts ###################################################################################################
          puts ###################################################################################################
          
@@ -118,7 +120,7 @@ class Interface
     def my_delete
         #deleting entire account
         response = prompt.yes?("Do you want to delete your account? This is final") do |q|
-            q.suffix "Yes / No"
+            q.suffix "Y / N"
         end
         if response == true
             my_account_delete = self.user
@@ -177,13 +179,6 @@ class Interface
         sleep 3
         self.main_menu
     end
-
-
-
-
-
-
-
 
     #displays all of the user's reservations
     #user chooses one of their reservations
@@ -280,7 +275,7 @@ class Interface
     def delete_reservation(chosen_reservation_id)
         #code for deleting
         response = prompt.yes?("Do you want to cancel this reservation?") do |q|
-            q.suffix "Yes / No"
+            q.suffix "Y / N"
             end
         if response == true
             my_rez_delete = self.user.reservations.find(chosen_reservation_id)
@@ -353,6 +348,7 @@ class Interface
         Reservation.create(party_size: dinner_party, date: dinner_date, user_id: user_num, restaurant_id: dinner_reservation.id  )
         #  binding.pry
         puts #####################################################################################
+        puts "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
         puts "COVID-19 RESTAURANT SAFETY PRECAUTIONS"
         puts #################################################################################
         puts "Cleaning and Sanitizing"
@@ -378,7 +374,7 @@ class Interface
         puts #################################################################################
         puts "✅ Waitstaff wear masks"
         puts "✅ Diners must wear masks unless eating or drinking"
-        
+        puts "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
         puts #####################################################################################
         # binding.pry
         # self.main_menu
