@@ -78,8 +78,6 @@ rake start
 ### Next Steps
 We would like to include scraping data from yelp to add a bigger database of restaurants in Harlem. This would lead to more options for users to make a reservation for. 
 
-### Resources
-
 ### Acknowledgements
 We want to thank:
 * Sylwia Vargas

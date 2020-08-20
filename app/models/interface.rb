@@ -24,20 +24,14 @@ class Interface
     def welcome_image
         puts "
         
-    _______________                        |*\_/*|________
-    |  ___________  |     .-.     .-.      ||_/-\_|______  |
-    | |           | |    .****. .****.     | |           | |
-    | |   0   0   | |    .*****.*****.     | |   0   0   | |
-    | |     -     | |     .*********.      | |     -     | |
-    | |   \___/   | |      .*******.       | |   \___/   | |
-    | |___     ___| |       .*****.        | |___________| |
-    |_____|\_/|_____|        .***.         |_______________|
-      _|__|/ \|_|_.............*.............._|________|_
-     / ********** \                          / ********** \
-   /  ************  \                      /  ************  \
-  --------------------                    --------------------
+        _    _      _                          _ 
+        | |  | |    | |                        | |
+        | |  | | ___| | ___ ___  _ __ ___   ___| |
+        | |/\| |/ _ \ |/ __/ _ \| '_ ` _ \ / _ \ |
+        \  /\  /  __/ | (_| (_) | | | | | |  __/_|
+         \/  \/ \___|_|\___\___/|_| |_| |_|\___(_)
 
-CREATED BY NUNNY REYES & WAVERLEY LEUNG
+        CREATED BY NUNNY REYES & WAVERLEY LEUNG
         "
     end
 
@@ -59,7 +53,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
        until user_register_return_value
         user_register_return_value = User.register()
        end
-       puts "Successfully Created!"
+       puts "Successfully Created! 🥳🥳🥳"
        self.user = user_register_return_value #the user associated with the user instance just created (attr_accessor :user -> should we rename?)
        self.main_menu
     end
@@ -68,8 +62,8 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
     def main_menu
         user.reload #makes sure that we get the most up to date info
         system "clear" #pushes this to the top of the terminal
-        puts "Welcome to our app!" #our app will change to our app name when we come up with it
-        prompt.select("What would you like to do?") do |menu|
+        puts "🍕🍕🍕 Welcome to our app! 🍕🍕🍕" #our app will change to our app name when we come up with it
+        prompt.select("What would you like to do? ") do |menu|
             menu.choice "See my Reservations", -> {display_user_reservations_helper}
             menu.choice "Make a Reservation", -> { display_all_restaurants_helper }
         end
@@ -93,8 +87,10 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         #     # Reservation.all.find(user_reservation.id)
         #     binding.pry
         # end
-        choice_id = prompt.select("What reservation do you want to see?", Reservation.reservation_id)
-            binding.pry
+        my_rez = self.user.reservations.reservation_id
+        # binding.pry
+        choice_id = prompt.select("What reservation do you want to see?", my_rez)
+            # binding.pry
         see_chosen_reservation(choice_id)
 
         # sleep 5 #after 5 seconds of inactivity
@@ -106,14 +102,19 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
      def see_chosen_reservation(choice_id)
-        binding.pry
-        puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
-            prompt.select("What would you like to do?") do |menu|
-                menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
-                menu.choice "cancel", -> { delete_reservation(chosen_reservation_instance) }
-                menu.choice "back", -> {self.main_menu}
+        
+        #name of the restaurant they will be dining at 
+        restaurant_chosen = Reservation.all.find(choice_id).restaurant.name
+        restaurant_date = Reservation.all.find(choice_id).date
+        puts " 🥂 You have a reservation at #{restaurant_chosen} on #{restaurant_date} 🥂"
+           
+
+        prompt.select("What would you like to do?") do |menu|
+                menu.choice "Update", -> {update_reservation(choice_id)}
+                menu.choice "Cancel", -> { delete_reservation(choice_id) }
+                menu.choice "Back", -> {self.main_menu}
         end
-    
+        # binding.pry
      end
 
      #updates the chosen reservation
@@ -121,28 +122,31 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
      def update_reservation(chosen_reservation_instance)
         #code for updating
         prompt.select("What would you like to update?") do |menu|
-            menu.choice "date", -> {choose_new_date(chosen_reservation_instance)}
-            menu.choice "party size", -> {choose_new_party(chosen_reservation_instance)}
-            menu.choice "back", -> {self.main_menu}
+            menu.choice "Date", -> {choose_new_date(chosen_reservation_instance)}
+            menu.choice "Party Size", -> {choose_new_party(chosen_reservation_instance)}
+            menu.choice "Back", -> {self.main_menu}
         end
     end
 
     #updates the reservation date/time
+    #reservation instance is no longer the instance it is the ID
+    
     def choose_new_date(chosen_reservation_instance)
-        new_date = TTY::Prompt.new.ask("Which date? Please note that you can only change this once")
+        new_date = TTY::Prompt.new.ask("Which date? *Please note that you can only change this once* =>")
         #How can we restrict a user from only updating something ONE time?
         chosen_reservation_instance.update(date: new_date)
-        puts "New date confirmed!"
-        puts "Please arrive 15 minutes prior and due to COVID-19 there is a 2 hour window on dining"
+        puts "New date confirmed! 🗓"
+        puts "🦠 Please arrive 15 minutes prior and due to COVID-19 there is a 2 hour window on dining 🦠"
         sleep 3
         self.main_menu
     end
 
     #updates the reservation party_size
     def choose_new_party(chosen_reservation_instance)
-        new_party = TTY::Prompt.new.ask("How many for dinner? Please note that you can only change this once")
+        new_party = TTY::Prompt.new.ask("How many for dinner? *Please note that you can only change this once* =>")
+        binding.pry
         chosen_reservation_instance.update(party_size: new_party)
-        puts "New party size confirmed!"
+        puts "New party size confirmed! 🕺"
         sleep 3
         self.main_menu
     end
@@ -153,11 +157,11 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         response = prompt.yes?("Do you want to cancel this reservation?")
         if response == true
             chosen_reservation_instance.destroy
-            puts "Your reservation is cancelled 😭"
+            puts "Your reservation is cancelled 😭🥺"
             sleep 5
             self.main_menu
         else
-            puts "Phew! We can't wait to see you!"
+            puts "Phew! We can't wait to see you! 😅"
             sleep 5
             self.main_menu
         end
@@ -170,7 +174,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         #Restaurant.all => all the restaurants
         #to just get the name we need to map(?) restaurant_instance.name
 
-        choice_restaurant = prompt.select("What restaurant do you want to see?", Restaurant.all_names)
+        choice_restaurant = prompt.select("What restaurant do you want to see? 👀 ", Restaurant.all_names)
         display_restaurant_info(choice_restaurant)
         
     end
@@ -200,12 +204,12 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         puts "💸: #{highlighted_restaurant.pricey}"
         
 
-        puts "❗️❗️ Tables available due to COVID-19: #{highlighted_restaurant.seating_capacity} ❗️❗️" 
+        puts "❗️😷❗️ Tables available due to COVID-19: #{highlighted_restaurant.seating_capacity} ❗️😷❗️" 
 
         puts #################################################################################
        
 
-        prompt.select("What would you like to do?") do |menu|
+        prompt.select("What would you like to do? ") do |menu|
             menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, user_num)}
             menu.choice "Go back", -> {self.main_menu}
         end
@@ -213,13 +217,14 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
 
     def reservation_confirmation(dinner_reservation, user_num)
         
-        dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards) 🐰🐰")
-        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM 🐰🐰")
+        dinner_party = TTY::Prompt.new.ask("How many guests? (5 guests limit per NYC Health Standards) => ")
+        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YYYY - HH:MM PM => ")
         # binding.pry
         # guest_saved = guest.user_id
         Reservation.create(party_size: dinner_party, date: dinner_date, user_id: user_num, restaurant_id: dinner_reservation.id  )
         #  binding.pry
         puts #####################################################################################
+        puts "COVID-19 RESTAURANT SAFETY PRECAUTIONS"
         puts "Cleaning and Sanitizing"
         puts "✅Surfaces sanitized between seatings"
         puts "✅Common areas deep cleaned daily"
@@ -230,14 +235,14 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
 
         
         puts######################################################################################
-        puts "Social Distancing"
+        puts "Social Distancing" 
         puts "✅Limited number of seated diners"
         puts "✅Distancing mantained in common areas"
         puts "✅Extra space between tables"
         puts "✅Sick staff prohibited in the workplace"
         
         puts #####################################################################################
-        puts "PPE"
+        puts "PPE" 
         puts "✅Waitstaff wear masks"
         puts "✅Diners must wear masks unless eating or drinking"
         
@@ -245,7 +250,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         # binding.pry
         # self.main_menu
         # binding.pry
-        prompt.select("We can't wait to see you") do |menu|
+        prompt.select("We can't wait to see you 🥳") do |menu|
             menu.choice "Go back", -> {self.main_menu}
         end
         
