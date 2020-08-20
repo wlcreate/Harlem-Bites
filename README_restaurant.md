@@ -22,6 +22,8 @@
   * change date
   * delete their reservation 
 
+🦠 Users will be able to see the precautions categorized by cleaning, socially distancing, and PPE that taken by the restaurant to keep diners healthy as they make a reservation for dinner.
+
 ### Getting Started
 To use our CLI app, users will open their terminal and run the following commands:
 
@@ -51,6 +53,21 @@ rake start
       <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
       <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
       <a href="#ideas-nunny" title="Ideas, Planning, & Feedback">💡</a>            
+    </td>
+  </tr>
+</table>
+
+
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/wlcreate">
+        <img src="https://avatars0.githubusercontent.com/u/62153993?s=460&v=4" width="200px;" alt=""/><br/><sub><b>Waverley</b></sub>
+      </a><br />
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
+      <a href="#ideas-waverley" title="Ideas, Planning, & Feedback">💡</a>            
     </td>
   </tr>
 </table>
