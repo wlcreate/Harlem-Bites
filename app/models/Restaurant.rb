@@ -9,9 +9,7 @@ class Restaurant < ActiveRecord::Base
     end
   end
 
-  # def self.all_precautions
-  #   SafetyPrecaution.
-  # end
+ 
 
 
 end

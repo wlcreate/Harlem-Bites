@@ -20,4 +20,19 @@ class User < ActiveRecord::Base
             User.create(name: user_name, phone_number: user_phone_number, password: user_password)
         end
     end
+
+    #we need to store the guest and their ID 
+    def self.user_id
+        User.all.map do |user_info|
+            # binding.pry
+        #   {user_info.name => 
+          user_info.id
+        # }
+        end
+      end
+
+
+
+
+
 end

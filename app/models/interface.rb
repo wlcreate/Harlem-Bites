@@ -62,7 +62,9 @@ class Interface
         # self.user.reservations <- All of the reservation instances
         # refer to Eric's video around 1:22:55 for more info on getting specific info out of objects! 
         all_choices = []
+        binding.pry
         self.user.reservations.each do |user_reservation|
+            
             all_choices << "#{user_reservation.date} - #{user_reservation.restaurant.name}"
         end
         choice = prompt.select("What reservation do you want to see?", all_choices)
@@ -152,7 +154,8 @@ class Interface
         #our choice is only returning the name of the restaurant. not the instance created
         #we are now going to do Restaurant.find_by(name: choice) and save this to a variable
         highlighted_restaurant = Restaurant.find_by(name: choice)
-        # binding.pry
+        guest_num = self.user.user_id[0]
+        #  binding.pry
 
        
 
@@ -162,6 +165,7 @@ class Interface
         puts ###############################################################################
         puts "🌃: #{highlighted_restaurant.address}"
         puts "🥂: #{highlighted_restaurant.telephone}"
+        puts "🕔: #{highlighted_restaurant.hours_open}"
         puts "🍽:  #{highlighted_restaurant.cuisine}"
         puts "💸: #{highlighted_restaurant.pricey}"
         
@@ -172,17 +176,19 @@ class Interface
        
 
         prompt.select("What would you like to do?") do |menu|
-            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant)}
+            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, guest_num)}
             menu.choice "Go back", -> {self.main_menu}
         end
     end
 
-    def reservation_confirmation(dinner_reservation)
+    def reservation_confirmation(dinner_reservation, guest_num)
         
         dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards)")
         dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM ")
-        Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: self.id, restaurant_id: dinner_reservation.id  )
-
+        # binding.pry
+        # guest_saved = guest.user_id
+        Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: guest_num, restaurant_id: dinner_reservation.id  )
+        #  binding.pry
         puts #####################################################################################
         puts "Cleaning and Sanitizing"
         puts "✅Surfaces sanitized between seatings"
@@ -206,7 +212,13 @@ class Interface
         puts "✅Diners must wear masks unless eating or drinking"
         
         puts #####################################################################################
-        self.main_menu
+        # binding.pry
+        # self.main_menu
+        # binding.pry
+        prompt.select("We can't wait to see you") do |menu|
+            menu.choice "Go back", -> {self.main_menu}
+        end
+        
     end
 
         
