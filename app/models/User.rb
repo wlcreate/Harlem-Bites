@@ -17,13 +17,12 @@ class User < ActiveRecord::Base
 
     def self.register
         user_name = TTY::Prompt.new.ask("What is your username?")
-        user_phone_number = TTY::Prompt.new.ask("What is your phone number?")
-        user_password = TTY::Prompt.new.mask("Create a password 🔑 ")
+        user_phone_number = TTY::Prompt.new.ask("What is your phone number? Ex: 212-222-2222")
+        user_password = TTY::Prompt.new.mask("Create a password. Min 6 characters 🔑")
         find_user = User.find_by(name: user_name)
         if find_user
             puts "Sorry, it looks like that username is taken."
         else
-            puts "Nice to meet you!"
             User.create(name: user_name, phone_number: user_phone_number, password: user_password)
             
         end

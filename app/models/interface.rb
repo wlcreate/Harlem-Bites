@@ -66,7 +66,6 @@ class Interface
        until user_register_return_value
         user_register_return_value = User.register()
        end
-       puts "Successfully Created! 🥳🥳🥳"
        self.user = user_register_return_value #the user associated with the user instance just created (attr_accessor :user -> should we rename?)
        self.main_menu
     end
@@ -96,8 +95,6 @@ class Interface
     end
 
     def my_account
-
-    
         prompt.select("What would you like to do?") do |menu|
             menu.choice "Update account details", -> {my_details}
             menu.choice "Delete account", -> { my_delete }
@@ -221,9 +218,10 @@ class Interface
         puts " 🥂 You have a reservation for #{restaurant_party_size} at #{restaurant_chosen} on #{restaurant_date} 🥂"
 
         prompt.select("What would you like to do?") do |menu|
-                menu.choice "Update", -> {update_reservation(choice_id)}
-                menu.choice "Cancel reservation", -> { delete_reservation(choice_id) }
-                menu.choice "Back", -> {self.main_menu}
+                menu.choice "Update Reservation", -> {update_reservation(choice_id)}
+                menu.choice "Cancel Reservation", -> { delete_reservation(choice_id) }
+                menu.choice "See all Reservations", -> { display_user_reservations_helper }
+                menu.choice "Main Menu", -> {self.main_menu}
         end
         # binding.pry
      end
@@ -297,7 +295,7 @@ class Interface
         #Restaurant.all => all the restaurants
         #to just get the name we need to map(?) restaurant_instance.name
 
-        choice_restaurant = prompt.select("What restaurant do you want to see? 👀 ", Restaurant.all_names)
+        choice_restaurant = prompt.select("Which restaurant would you like to see? 👀 ", Restaurant.all_names)
         display_restaurant_info(choice_restaurant)
         
     end
@@ -333,8 +331,8 @@ class Interface
        
 
         prompt.select("What would you like to do? ") do |menu|
-            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, user_num)}
-            menu.choice "See Restaurants", -> {display_all_restaurants_helper}
+            menu.choice "Make a Reservation", -> {reservation_confirmation(highlighted_restaurant, user_num)}
+            menu.choice "See all Restaurants", -> {display_all_restaurants_helper}
             menu.choice "Main Menu", -> {self.main_menu}
         end
     end
