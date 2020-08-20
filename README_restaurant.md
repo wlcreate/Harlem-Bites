@@ -15,7 +15,7 @@ rake start
 
 Installion and Running
 
-###Contributors
+### Contributors
 
 <table>
   <tr>
