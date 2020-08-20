@@ -30,12 +30,6 @@ ActiveRecord::Schema.define(version: 2020_08_18_163945) do
     t.string "stars"
   end
 
-  create_table "safety_precautions", force: :cascade do |t|
-    t.string "cleaning_sanitizing"
-    t.string "social_distancing"
-    t.string "ppe"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password"
