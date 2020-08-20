@@ -54,6 +54,16 @@ rake start
       <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
       <a href="#ideas-nunny" title="Ideas, Planning, & Feedback">💡</a>            
     </td>
+    <tr>
+    <td align="center">
+      <a href="https://github.com/wlcreate">
+        <img src="https://avatars0.githubusercontent.com/u/62153993?s=460&v=4" width="200px;" alt=""/><br/><sub><b>Waverley</b></sub>
+      </a><br />
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
+      <a href="#ideas-waverley" title="Ideas, Planning, & Feedback">💡</a>            
+    </td>
+    <tr>
   </tr>
 </table>
 
