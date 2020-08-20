@@ -1,20 +1,22 @@
 <!-- ## Process -->
 ## Table of Contents
 1. About
-2. Getting Started
-3. Stack
-4. Contributors
-5. Next Steps
+2. Features
+3. Getting Started
+4. Stack
+5. Contributors
+6. Next Steps
 
 ### About
 
 🥂Restaurant Week is a CLI-based app that allows users to choose different restaurants located in [Harlem, New York City](https://en.wikipedia.org/wiki/Harlem).
 
-🥂Users are able to shop local and support restaurants that vary in cuisines as NYC navigates reopening during the COVID-19 pandemic.
+### Features
+🗽Users are able to shop local and support restaurants that vary in cuisines as NYC navigates reopening during the COVID-19 pandemic.
 
-🥂When restaurants are selected users will be able to view a snapshot of information detailing name, reviews, price, and hours of operation
+🗽When restaurants are selected users will be able to view a snapshot of information detailing name, reviews, price, and hours of operation
 
-🥂Users are able to make a reservation complying with outdoor dining with COVID-19.
+🗽Users are able to make a reservation complying with outdoor dining with COVID-19.
   Users are able to update party size, change date, and delete their reservation if they wish.
 
 ### Getting Started
@@ -54,7 +56,7 @@ rake start
 
 
 ### Next Steps
-Would include scraping data from yelp to add a bigger database of restaurants in Harlem. This would lead to more options for users to make a reservation for. 
+We would like to include scraping data from yelp to add a bigger database of restaurants in Harlem. This would lead to more options for users to make a reservation for. 
 
 ### Resources
 
