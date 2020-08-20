@@ -24,14 +24,30 @@ class Interface
     def welcome_image
         puts "
         
-        _    _      _                          _ 
-        | |  | |    | |                        | |
-        | |  | | ___| | ___ ___  _ __ ___   ___| |
-        | |/\| |/ _ \ |/ __/ _ \| '_ ` _ \ / _ \ |
-        \  /\  /  __/ | (_| (_) | | | | | |  __/_|
-         \/  \/ \___|_|\___\___/|_| |_| |_|\___(_)
 
-        CREATED BY NUNNY REYES & WAVERLEY LEUNG
+
+
+
+
+
+       
+        ██╗  ██╗ █████╗ ██████╗ ██╗     ███████╗███╗   ███╗    ██████╗ ██╗████████╗███████╗███████╗
+        ██║  ██║██╔══██╗██╔══██╗██║     ██╔════╝████╗ ████║    ██╔══██╗██║╚══██╔══╝██╔════╝██╔════╝
+        ███████║███████║██████╔╝██║     █████╗  ██╔████╔██║    ██████╔╝██║   ██║   █████╗  ███████╗
+        ██╔══██║██╔══██║██╔══██╗██║     ██╔══╝  ██║╚██╔╝██║    ██╔══██╗██║   ██║   ██╔══╝  ╚════██║
+        ██║  ██║██║  ██║██║  ██║███████╗███████╗██║ ╚═╝ ██║    ██████╔╝██║   ██║   ███████╗███████║
+        ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     ╚═╝    ╚═════╝ ╚═╝   ╚═╝   ╚══════╝╚══════╝
+
+
+
+                                    CREATED BY NUNNY REYES & WAVERLEY LEUNG
+                                    
+       
+
+                                                  
+
+
+                                     
         "
     end
 
@@ -62,7 +78,7 @@ class Interface
     def main_menu
         user.reload #makes sure that we get the most up to date info
         system "clear" #pushes this to the top of the terminal
-        puts "🍕🍕🍕 Welcome to our app! 🍕🍕🍕" #our app will change to our app name when we come up with it
+        puts "🍕🍕🍕 Welcome to Harlem Bites! 🍕🍕🍕" #our app will change to our app name when we come up with it
         prompt.select("What would you like to do? ") do |menu|
             menu.choice "See my Reservations", -> {display_user_reservations_helper}
             menu.choice "Make a Reservation", -> { display_all_restaurants_helper }
@@ -102,7 +118,7 @@ class Interface
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
      def see_chosen_reservation(choice_id)
-        
+        user.reload
         #name of the restaurant they will be dining at 
         restaurant_chosen = Reservation.all.find(choice_id).restaurant.name
         restaurant_date = Reservation.all.find(choice_id).date
@@ -232,7 +248,9 @@ class Interface
         #  binding.pry
         puts #####################################################################################
         puts "COVID-19 RESTAURANT SAFETY PRECAUTIONS"
+        puts #################################################################################
         puts "Cleaning and Sanitizing"
+        puts #################################################################################
         puts "✅Surfaces sanitized between seatings"
         puts "✅Common areas deep cleaned daily"
         puts "✅Digital, disposable or sanitized menu provided"
@@ -243,6 +261,7 @@ class Interface
         
         puts######################################################################################
         puts "Social Distancing" 
+        puts #################################################################################
         puts "✅Limited number of seated diners"
         puts "✅Distancing mantained in common areas"
         puts "✅Extra space between tables"
@@ -250,6 +269,7 @@ class Interface
         
         puts #####################################################################################
         puts "PPE" 
+        puts #################################################################################
         puts "✅Waitstaff wear masks"
         puts "✅Diners must wear masks unless eating or drinking"
         
