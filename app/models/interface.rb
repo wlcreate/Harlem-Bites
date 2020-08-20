@@ -163,9 +163,9 @@ class Interface
         puts "#{highlighted_restaurant.name}"
         puts "#{highlighted_restaurant.stars}"
         puts ###############################################################################
-        puts "🌃: #{highlighted_restaurant.address}"
+        puts "🗽: #{highlighted_restaurant.address}"
         puts "🥂: #{highlighted_restaurant.telephone}"
-        puts "🕔: #{highlighted_restaurant.hours_open}"
+        puts "🌃: #{highlighted_restaurant.hours_open}"
         puts "🍽:  #{highlighted_restaurant.cuisine}"
         puts "💸: #{highlighted_restaurant.pricey}"
         

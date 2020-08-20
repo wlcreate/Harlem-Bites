@@ -1,13 +1,18 @@
-## Process
+<!-- ## Process -->
 ## Table of Contents
 1. About
 2. Stack
 3. Next Steps
 4. Contributors
 
+### About
 Restaurant Week is a CLI-based app that allows users to choose different restaurants located in Harlem, New York City.
 
-Users are able to shop local and support restaurants that vary in cuisines.
+Users are able to shop local and support restaurants that vary in cuisines as NYC navigates reopening during the COVID-19 pandemic.
+
+When restaurants are selected users will be able to view a snapshot of information detailing name, reviews, price, and hours of operation
+
+
 
 
 
