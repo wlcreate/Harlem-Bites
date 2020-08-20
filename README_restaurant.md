@@ -15,7 +15,7 @@ rake start
 
 Installion and Running
 
-Contributors
+###Contributors
 
 <table>
   <tr>
@@ -29,8 +29,6 @@ Contributors
     </td>
   </tr>
 </table>
-Nunny Reyes
-Waverley 
 
 
 Resources
