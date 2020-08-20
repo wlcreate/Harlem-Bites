@@ -111,7 +111,7 @@ class Interface
 
         prompt.select("What would you like to do?") do |menu|
                 menu.choice "Update", -> {update_reservation(choice_id)}
-                menu.choice "Cancel", -> { delete_reservation(choice_id) }
+                menu.choice "Cancel reservation", -> { delete_reservation(choice_id) }
                 menu.choice "Back", -> {self.main_menu}
         end
         # binding.pry
@@ -119,22 +119,27 @@ class Interface
 
      #updates the chosen reservation
      #can choose to update the date and/or the party_size
-     def update_reservation(chosen_reservation_instance)
+     def update_reservation(chosen_reservation_id)
         #code for updating
         prompt.select("What would you like to update?") do |menu|
-            menu.choice "Date", -> {choose_new_date(chosen_reservation_instance)}
-            menu.choice "Party Size", -> {choose_new_party(chosen_reservation_instance)}
+            menu.choice "Date", -> {choose_new_date(chosen_reservation_id)}
+            menu.choice "Party Size", -> {choose_new_party(chosen_reservation_id)}
             menu.choice "Back", -> {self.main_menu}
         end
     end
 
     #updates the reservation date/time
     #reservation instance is no longer the instance it is the ID
-    
-    def choose_new_date(chosen_reservation_instance)
+
+    def choose_new_date(chosen_reservation_id)
         new_date = TTY::Prompt.new.ask("Which date? *Please note that you can only change this once* =>")
+        #we are looking specifically for this ID, you may have multiple reservations
+        my_rez_date = self.user.reservations.find(chosen_reservation_id)
+        binding.pry
+
+
         #How can we restrict a user from only updating something ONE time?
-        chosen_reservation_instance.update(date: new_date)
+        my_rez_date.update(date: new_date)
         puts "New date confirmed! 🗓"
         puts "🦠 Please arrive 15 minutes prior and due to COVID-19 there is a 2 hour window on dining 🦠"
         sleep 3
@@ -142,21 +147,23 @@ class Interface
     end
 
     #updates the reservation party_size
-    def choose_new_party(chosen_reservation_instance)
+    def choose_new_party(chosen_reservation_id)
         new_party = TTY::Prompt.new.ask("How many for dinner? *Please note that you can only change this once* =>")
-        binding.pry
-        chosen_reservation_instance.update(party_size: new_party)
+        my_rez_party = self.user.reservations.find(chosen_reservation_id)
+        # binding.pry
+        my_rez_party.update(party_size: new_party)
         puts "New party size confirmed! 🕺"
         sleep 3
         self.main_menu
     end
 
     #deletes the chosen reservation
-    def delete_reservation(chosen_reservation_instance)
+    def delete_reservation(chosen_reservation_id)
         #code for deleting
         response = prompt.yes?("Do you want to cancel this reservation?")
         if response == true
-            chosen_reservation_instance.destroy
+            my_rez_delete = self.user.reservations.find(chosen_reservation_id)
+            my_rez_delete.destroy
             puts "Your reservation is cancelled 😭🥺"
             sleep 5
             self.main_menu
