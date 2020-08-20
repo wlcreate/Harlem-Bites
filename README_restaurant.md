@@ -1,4 +1,9 @@
-##Process
+## Process
+## Table of Contents
+1. About
+2. Stack
+3. Next Steps
+4. Contributors
 
 Restaurant Week is a CLI-based app that allows users to choose different restaurants located in Harlem, New York City.
 
@@ -11,6 +16,7 @@ bundle install
 rake db:seed
 rake start
 
+### Next Steps
 
 
 Installion and Running
