@@ -9,7 +9,7 @@ SafetyPrecaution.reset_pk_sequence
 
 #User instances
 waverley = User.create(name: "Waverley", phone_number: "(718)986-6758", password: "wavey")
-#nunny = User.create(name: "Nunny", phone_number: "", password: )
+nunny = User.create(name: "Nunny", phone_number: "(212)222-2222", password: "nico")
 
 #Restaurant instances
 # NEED TO FIGURE OUT THE TIME DATA TYPE

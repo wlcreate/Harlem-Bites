@@ -83,18 +83,19 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         # self.user.restaurants <- All of the restaurants associated with the User
         # self.user.reservations <- All of the reservation instances
         # refer to Eric's video around 1:22:55 for more info on getting specific info out of objects! 
-        all_choices = []
+        # all_choices = []
         #need to pull up Reservation.all
         #need to .find_by restaurant id && matches the self.user.id
-        self.user.reservations.each do |user_reservation|
+        # self.user.reservations.each do |user_reservation|
+        #     binding.pry
+        #     all_choices << user_reservation.reservation_id
+        #     # "#{user_reservation.date} - #{user_reservation.restaurant.name}"
+        #     # Reservation.all.find(user_reservation.id)
+        #     binding.pry
+        # end
+        choice_id = prompt.select("What reservation do you want to see?", Reservation.reservation_id)
             binding.pry
-            all_choices << user_reservation.reservation_id
-            # "#{user_reservation.date} - #{user_reservation.restaurant.name}"
-            # Reservation.all.find(user_reservation.id)
-            binding.pry
-        end
-        choice_id = prompt.select("What reservation do you want to see?", all_choices)
-        see_chosen_reservation(choice)
+        see_chosen_reservation(choice_id)
 
         # sleep 5 #after 5 seconds of inactivity
         # self.main_menu #goes back to main menu
@@ -104,7 +105,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
     #displays the chosen reservation
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
-     def see_chosen_reservation(chosen_reservation_instance)
+     def see_chosen_reservation(choice_id)
         binding.pry
         puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
             prompt.select("What would you like to do?") do |menu|
