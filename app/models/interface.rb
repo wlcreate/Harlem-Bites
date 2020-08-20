@@ -79,8 +79,100 @@ class Interface
         prompt.select("What would you like to do? ") do |menu|
             menu.choice "See my Reservations", -> {display_user_reservations_helper}
             menu.choice "Make a Reservation", -> { display_all_restaurants_helper }
+            menu.choice "My Account", -> { my_account }
+
         end
     end
+
+    def my_account
+
+    
+        prompt.select("What would you like to do?") do |menu|
+            menu.choice "Update account details", -> {my_details}
+            menu.choice "Delete account", -> { my_delete }
+            menu.choice "Back", -> {self.main_menu}
+        end
+    end
+
+
+    def my_details
+        prompt.select("What detail would you like to update?") do |menu|
+            menu.choice "Username", -> {update_my_name}
+            menu.choice "Password", -> {update_my_password}
+            menu.choice "Phone Number", -> {update_my_phone}
+            menu.choice "Back", -> {self.main_menu}
+        end
+
+
+    end
+
+    def my_delete
+        #deleting entire account
+        response = prompt.yes?("Do you want to cancel this reservation?")
+        if response == true
+            my_rez_delete = self.user.reservations.find(chosen_reservation_id)
+            my_rez_delete.destroy
+            puts "Your reservation is cancelled 😭🥺"
+            sleep 5
+            self.main_menu
+        else
+            puts "Phew! We can't wait to see you! 😅"
+            sleep 5
+            self.main_menu
+        end
+       
+    end
+
+    def update_my_name
+        new_name = TTY::Prompt.new.ask("What is your new username? =>")
+        #my_rez_party = self.user.reservations.find(chosen_reservation_id)
+        # binding.pry
+        
+        this_is_me = self.user
+        # binding.pry
+        this_is_me.update(name: new_name)
+        
+        puts "New name #{this_is_me.name} is confirmed!"
+        sleep 3
+        self.main_menu
+
+    end
+
+    def update_my_password
+        new_password = TTY::Prompt.new.mask("What is your new password? =>")
+        #my_rez_party = self.user.reservations.find(chosen_reservation_id)
+        # binding.pry
+        
+        this_is_password = self.user
+        # binding.pry
+        this_is_password.update(password: new_password)
+        
+        puts "This will only be shown once: new password #{new_password}!"
+        sleep 3
+        self.main_menu
+
+    end
+
+    def update_my_phone
+        new_phone_number = TTY::Prompt.new.ask("What is your new phone number? =>")
+        #my_rez_party = self.user.reservations.find(chosen_reservation_id)
+        # binding.pry
+        
+        this_is_phone = self.user
+        # binding.pry
+        this_is_phone.update(phone_number: new_phone_number)
+        
+        puts "Your saved number is now #{new_phone_number}!"
+        sleep 3
+        self.main_menu
+    end
+
+
+
+
+
+
+
 
     #displays all of the user's reservations
     #user chooses one of their reservations

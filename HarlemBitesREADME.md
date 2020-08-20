@@ -82,6 +82,9 @@ rake start
 
 3. Incorporate a 4th model
 
+4. Create rspec files to test our CLI model
+
+5. Create migrations to add more account details (pronoun name, email, credit card)
 
 
 ### Acknowledgements
