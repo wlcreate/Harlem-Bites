@@ -80,13 +80,8 @@ class Interface
         # all_choices = []
         #need to pull up Reservation.all
         #need to .find_by restaurant id && matches the self.user.id
-        # self.user.reservations.each do |user_reservation|
-        #     binding.pry
-        #     all_choices << user_reservation.reservation_id
-        #     # "#{user_reservation.date} - #{user_reservation.restaurant.name}"
-        #     # Reservation.all.find(user_reservation.id)
-        #     binding.pry
-        # end
+        
+        if self.user.reservations.count > 0
         my_rez = self.user.reservations.reservation_id
         # binding.pry
         choice_id = prompt.select("What reservation do you want to see?", my_rez)
@@ -96,6 +91,11 @@ class Interface
         # sleep 5 #after 5 seconds of inactivity
         # self.main_menu #goes back to main menu
         # # self.main_menu <- To take me back to the main_menu
+        else 
+            puts "You don't have any reservations! Let's dine somewhere"
+            sleep 2
+            display_all_restaurants_helper()
+        end
     end
 
     #displays the chosen reservation
