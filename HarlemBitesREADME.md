@@ -71,11 +71,6 @@ To use our CLI app, users will open their terminal and run the following command
     </td>
 
 
-
-
-
-
-
   </tr>
 </table>
 
