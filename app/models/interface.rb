@@ -75,7 +75,16 @@ class Interface
     def main_menu
         user.reload #makes sure that we get the most up to date info
         system "clear" #pushes this to the top of the terminal
+        
+        puts ###################################################################################################
         puts "🍕🍕🍕 Welcome to Harlem Bites! 🍕🍕🍕" #our app will change to our app name when we come up with it
+        
+         puts ###################################################################################################
+         puts ###################################################################################################
+         
+        
+        
+        
         prompt.select("What would you like to do? ") do |menu|
             menu.choice "See my Reservations", -> {display_user_reservations_helper}
             menu.choice "Make a Reservation", -> { display_all_restaurants_helper }
@@ -108,15 +117,17 @@ class Interface
 
     def my_delete
         #deleting entire account
-        response = prompt.yes?("Do you want to cancel this reservation?")
+        response = prompt.yes?("Do you want to delete your account? This is final") do |q|
+            q.suffix "Yes / No"
+        end
         if response == true
-            my_rez_delete = self.user.reservations.find(chosen_reservation_id)
-            my_rez_delete.destroy
-            puts "Your reservation is cancelled 😭🥺"
+            my_account_delete = self.user
+            my_account_delete.destroy
+            puts "I can't believe this happened 😭🥺"
             sleep 5
-            self.main_menu
+            self.welcome
         else
-            puts "Phew! We can't wait to see you! 😅"
+            puts "Phew! We got worried! 😅"
             sleep 5
             self.main_menu
         end
@@ -240,14 +251,17 @@ class Interface
         new_date = TTY::Prompt.new.ask("Which date? *Please note that you can only change this once* =>")
         #we are looking specifically for this ID, you may have multiple reservations
         my_rez_date = self.user.reservations.find(chosen_reservation_id)
-        binding.pry
+        # binding.pry
 
 
         #How can we restrict a user from only updating something ONE time?
         my_rez_date.update(date: new_date)
-        puts "New date confirmed! 🗓"
-        puts "🦠 Please arrive 15 minutes prior and due to COVID-19 there is a 2 hour window on dining 🦠"
-        sleep 3
+        puts #############################################################
+        puts "New date confirmed! on #{new_date}🗓"
+
+        puts "🦠 Please arrive 15 minutes prior"
+        puts "🦠 There is a 2 hour window on dining"
+        sleep 8
         self.main_menu
     end
 
@@ -265,7 +279,9 @@ class Interface
     #deletes the chosen reservation
     def delete_reservation(chosen_reservation_id)
         #code for deleting
-        response = prompt.yes?("Do you want to cancel this reservation?")
+        response = prompt.yes?("Do you want to cancel this reservation?") do |q|
+            q.suffix "Yes / No"
+            end
         if response == true
             my_rez_delete = self.user.reservations.find(chosen_reservation_id)
             my_rez_delete.destroy
@@ -323,7 +339,8 @@ class Interface
 
         prompt.select("What would you like to do? ") do |menu|
             menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, user_num)}
-            menu.choice "Go back", -> {self.main_menu}
+            menu.choice "See Restaurants", -> {display_all_restaurants_helper}
+            menu.choice "Main Menu", -> {self.main_menu}
         end
     end
 
@@ -340,27 +357,27 @@ class Interface
         puts #################################################################################
         puts "Cleaning and Sanitizing"
         puts #################################################################################
-        puts "✅Surfaces sanitized between seatings"
-        puts "✅Common areas deep cleaned daily"
-        puts "✅Digital, disposable or sanitized menu provided"
-        puts "✅Sanitizer or wipes provided for customers"
-        puts "✅Contactless payment available"
-        puts "✅Sealed or wrapped utensils used"
+        puts "✅ Surfaces sanitized between seatings"
+        puts "✅ Common areas deep cleaned daily"
+        puts "✅ Digital, disposable or sanitized menu provided"
+        puts "✅ Sanitizer or wipes provided for customers"
+        puts "✅ Contactless payment available"
+        puts "✅ Sealed or wrapped utensils used"
 
         
         puts######################################################################################
         puts "Social Distancing" 
         puts #################################################################################
-        puts "✅Limited number of seated diners"
-        puts "✅Distancing mantained in common areas"
-        puts "✅Extra space between tables"
-        puts "✅Sick staff prohibited in the workplace"
+        puts "✅ Limited number of seated diners"
+        puts "✅ Distancing mantained in common areas"
+        puts "✅ Extra space between tables"
+        puts "✅ Sick staff prohibited in the workplace"
         
         puts #####################################################################################
-        puts "PPE" 
+        puts "Personal Protective Equipment (PPE)" 
         puts #################################################################################
-        puts "✅Waitstaff wear masks"
-        puts "✅Diners must wear masks unless eating or drinking"
+        puts "✅ Waitstaff wear masks"
+        puts "✅ Diners must wear masks unless eating or drinking"
         
         puts #####################################################################################
         # binding.pry
