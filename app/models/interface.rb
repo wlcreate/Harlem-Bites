@@ -62,9 +62,9 @@ class Interface
         # self.user.reservations <- All of the reservation instances
         # refer to Eric's video around 1:22:55 for more info on getting specific info out of objects! 
         all_choices = []
-        binding.pry
+        
         self.user.reservations.each do |user_reservation|
-            
+            binding.pry
             all_choices << "#{user_reservation.date} - #{user_reservation.restaurant.name}"
         end
         choice = prompt.select("What reservation do you want to see?", all_choices)
@@ -223,15 +223,7 @@ class Interface
 
         
 
-    # def covid_precautions
-    #     first_safety
-    # end
 
-
-
-
-###here is a comment test
-#here is another one to test
 
 
 end
