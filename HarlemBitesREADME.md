@@ -9,20 +9,26 @@
 
 ### About
 
-🥂Restaurant Week is a CLI-based app that allows users to choose different restaurants located in [Harlem, New York City](https://en.wikipedia.org/wiki/Harlem).
+🥂Harlem Bites is a CLI-based app that allows users to choose different restaurants located in [Harlem, New York City](https://en.wikipedia.org/wiki/Harlem). This app was created with three models using object relationship mapping and have CRUD abilities.
 
 ### Features
 🗽Users are able to shop local and support restaurants that vary in cuisines as NYC navigates reopening during the COVID-19 pandemic.
 
-🗽When restaurants are selected users will be able to view a snapshot of information detailing name, reviews, price, and hours of operation
+🗽When restaurants are selected users will be able to view a snapshot of information detailing the restaurant's name, address, telephone number, general price, hours of operation, cuisine served, how many tables are available, and how many stars it has received.
 
 🗽Users are able to make a reservation complying with outdoor dining with COVID-19.
-  Users are able to update 
+  Users are able to update their reservation's
   * party size 
-  * change date
-  * delete their reservation 
+  * date/time
+  * cancel their reservation
 
 🦠 Users will be able to see the precautions categorized by cleaning, socially distancing, and PPE that taken by the restaurant to keep diners healthy as they make a reservation for dinner.
+
+🗽 Users are able to update their account details
+  * username
+  * phone number
+  * password
+  * delete their account
 
 ### Getting Started
 To use our CLI app, users will open their terminal and run the following commands:
@@ -37,8 +43,6 @@ rake start
 1. Ruby
 2. Active Record
 3. Sqlite3 
-
-
 
 
 ### Contributors
@@ -78,19 +82,29 @@ rake start
 ### Next Steps
 1. We would like to include scraping data from yelp to add a bigger database of restaurants in Harlem. This would lead to more options for users to make a reservation for. 
 
-2. Work on making this model accessible using accessibility tools
+2. Work on making this model accessible using accessibility tools.
 
-3. Incorporate a 4th model
+3. Incorporate a 4th model.
 
-4. Create rspec files to test our CLI model
+4. Create rspec files to test our CLI model.
 
-5. Create migrations to add more account details (pronoun name, email, credit card)
+5. Create migrations/add more columns to our User table to add more account details (pronoun name, email, credit card).
+
+6. Add more additional validation for prompts, music, and animation.
+
+7. Continue to add CLI resources to our README
 
 
 ### Acknowledgements
-We want to thank:
+We would like to thank:
 * Sylwia Vargas
 * Eric Kim
 * Annie Zheng
 * Isabel K. Lee
 * the Code Bender Cohort for their positivity
+ 
+
+### Resources
+1. [Sylwia Vargas' Article on Ruby CLI Art](https://medium.com/@sylwiavargas/adding-pictures-to-your-ruby-cli-4252b89823a)
+2. [TTY Github for Documentation](https://github.com/piotrmurach/tty)
+3. [ASCII Font Creator](http://patorjk.com/software/taag/#p=display&f=Flower%20Power&t=Welcome!)
