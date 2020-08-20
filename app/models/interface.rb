@@ -12,7 +12,8 @@ class Interface
         # if choice == "See All Plants" 
         # elsif choice == "See All Categories"
         # end
-
+        system "clear"
+        welcome_image()
         prompt.select("Please make a selection:") do |menu|
             menu.choice "Log In", -> { log_returning_user_helper }
             menu.choice "Create a User", -> { create_user_helper }
@@ -20,12 +21,33 @@ class Interface
 
     end
 
+    def welcome_image
+        puts "
+        
+    _______________                        |*\_/*|________
+    |  ___________  |     .-.     .-.      ||_/-\_|______  |
+    | |           | |    .****. .****.     | |           | |
+    | |   0   0   | |    .*****.*****.     | |   0   0   | |
+    | |     -     | |     .*********.      | |     -     | |
+    | |   \___/   | |      .*******.       | |   \___/   | |
+    | |___     ___| |       .*****.        | |___________| |
+    |_____|\_/|_____|        .***.         |_______________|
+      _|__|/ \|_|_.............*.............._|________|_
+     / ********** \                          / ********** \
+   /  ************  \                      /  ************  \
+  --------------------                    --------------------
+
+CREATED BY NUNNY REYES & WAVERLEY LEUNG
+        "
+    end
+
     #this should ask for the user's name + password to find them in the User table of our database
     #once found, will bring them to the main menu
     def log_returning_user_helper
         user_log_in_info = User.log_in()
         self.user = user_log_in_info
-        puts "Thanks for coming back #{self.user.name}!"
+        # binding.pry
+        sleep 5
         self.main_menu
     end
 
@@ -62,10 +84,15 @@ class Interface
         # self.user.reservations <- All of the reservation instances
         # refer to Eric's video around 1:22:55 for more info on getting specific info out of objects! 
         all_choices = []
-        
+        #need to pull up Reservation.all
+        #need to .find_by restaurant id && matches the self.user.id
+
+        reservation_name = user_reservation.restaurant.name
+        reservation_date = user_reservation.date
+        binding.pry
         self.user.reservations.each do |user_reservation|
             binding.pry
-            all_choices << "#{user_reservation.date} - #{user_reservation.restaurant.name}"
+            all_choices << "#{reservation_date} - #{reservation_name}"
         end
         choice = prompt.select("What reservation do you want to see?", all_choices)
         see_chosen_reservation(choice)
@@ -154,7 +181,9 @@ class Interface
         #our choice is only returning the name of the restaurant. not the instance created
         #we are now going to do Restaurant.find_by(name: choice) and save this to a variable
         highlighted_restaurant = Restaurant.find_by(name: choice)
-        guest_num = self.user.user_id[0]
+        # binding.pry
+        guest_num = self.user.id
+        # guest_num = self.user.user_id[0]
         #  binding.pry
 
        
@@ -183,8 +212,8 @@ class Interface
 
     def reservation_confirmation(dinner_reservation, guest_num)
         
-        dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards)")
-        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM ")
+        dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards) 🐰🐰")
+        dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM 🐰🐰")
         # binding.pry
         # guest_saved = guest.user_id
         Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: guest_num, restaurant_id: dinner_reservation.id  )
