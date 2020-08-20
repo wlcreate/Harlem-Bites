@@ -60,9 +60,9 @@ Would include scraping data from yelp to add a bigger database of restaurants in
 
 ### Acknowledgements
 We want to thank :
-*Sylwia Vargas
-*Annie Zheng
-*Isabel K. Lee
-*ric Kim
+* Sylwia Vargas
+* Annie Zheng
+* Isabel K. Lee
+* Eric Kim
 
-*And the Code Bender Cohort for their positivity
+* And the Code Bender Cohort for their positivity
