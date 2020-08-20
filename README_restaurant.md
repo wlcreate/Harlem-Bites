@@ -17,7 +17,10 @@
 🗽When restaurants are selected users will be able to view a snapshot of information detailing name, reviews, price, and hours of operation
 
 🗽Users are able to make a reservation complying with outdoor dining with COVID-19.
-  Users are able to update party size, change date, and delete their reservation if they wish.
+  Users are able to update 
+  * party size 
+  * change date
+  * delete their reservation 
 
 ### Getting Started
 To use our CLI app, users will open their terminal and run the following commands:
