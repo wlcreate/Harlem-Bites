@@ -250,7 +250,7 @@ class Interface
         #How can we restrict a user from only updating something ONE time?
         my_rez_date.update(date: new_date)
         puts #############################################################
-        puts "New date confirmed! on #{new_date}🗓"
+        puts "New date confirmed for #{new_date} 🗓"
 
         puts "🦠 Please arrive 15 minutes prior"
         puts "🦠 There is a 2 hour window on dining"
@@ -264,7 +264,7 @@ class Interface
         my_rez_party = self.user.reservations.find(chosen_reservation_id)
         # binding.pry
         my_rez_party.update(party_size: new_party)
-        puts "New party size confirmed! 🕺"
+        puts "New party size of #{new_party} confirmed! 🌟"
         sleep 3
         self.main_menu
     end
