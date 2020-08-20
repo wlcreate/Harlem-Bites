@@ -27,18 +27,4 @@ class User < ActiveRecord::Base
         end
     end
 
-    #we need to store the guest and their ID 
-    # def self.user_id
-    #     User.all.map do |user_info|
-    #         # binding.pry
-    #     #   {user_info.name => 
-    #       user_info.id
-    #     # }
-    #     end
-    #   end
-
-
-
-
-
 end

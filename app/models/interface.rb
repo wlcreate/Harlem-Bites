@@ -47,7 +47,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         user_log_in_info = User.log_in()
         self.user = user_log_in_info
         # binding.pry
-        sleep 5
+        sleep 3
         self.main_menu
     end
 
@@ -86,15 +86,14 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         all_choices = []
         #need to pull up Reservation.all
         #need to .find_by restaurant id && matches the self.user.id
-
-        reservation_name = user_reservation.restaurant.name
-        reservation_date = user_reservation.date
-        binding.pry
         self.user.reservations.each do |user_reservation|
             binding.pry
-            all_choices << "#{reservation_date} - #{reservation_name}"
+            all_choices << user_reservation.reservation_id
+            # "#{user_reservation.date} - #{user_reservation.restaurant.name}"
+            # Reservation.all.find(user_reservation.id)
+            binding.pry
         end
-        choice = prompt.select("What reservation do you want to see?", all_choices)
+        choice_id = prompt.select("What reservation do you want to see?", all_choices)
         see_chosen_reservation(choice)
 
         # sleep 5 #after 5 seconds of inactivity
@@ -106,6 +105,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
     #asks if the user want to update or cancel the chosen reservation
     #do we want to display the chosen restaurant's more info again? - YES Stretch Goal
      def see_chosen_reservation(chosen_reservation_instance)
+        binding.pry
         puts "You have a reservation at #{chosen_reservation_instance.restaurant.name} on #{chosen_reservation_instance.date}"
             prompt.select("What would you like to do?") do |menu|
                 menu.choice "update", -> {update_reservation(chosen_reservation_instance)}
@@ -182,7 +182,7 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
         #we are now going to do Restaurant.find_by(name: choice) and save this to a variable
         highlighted_restaurant = Restaurant.find_by(name: choice)
         # binding.pry
-        guest_num = self.user.id
+        user_num = self.user.id
         # guest_num = self.user.user_id[0]
         #  binding.pry
 
@@ -205,18 +205,18 @@ CREATED BY NUNNY REYES & WAVERLEY LEUNG
        
 
         prompt.select("What would you like to do?") do |menu|
-            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, guest_num)}
+            menu.choice "Make a reservation", -> {reservation_confirmation(highlighted_restaurant, user_num)}
             menu.choice "Go back", -> {self.main_menu}
         end
     end
 
-    def reservation_confirmation(dinner_reservation, guest_num)
+    def reservation_confirmation(dinner_reservation, user_num)
         
         dinner_party = TTY::Prompt.new.ask("How many guests? (including yourself no more than 5 guests - NYC Health Standards) 🐰🐰")
         dinner_date = TTY::Prompt.new.ask("Please enter a date and time in the following format: MM/DD/YY - HH:MM PM 🐰🐰")
         # binding.pry
         # guest_saved = guest.user_id
-        Reservation.create(party_size: dinner_party, date: dinner_date, guest_id: guest_num, restaurant_id: dinner_reservation.id  )
+        Reservation.create(party_size: dinner_party, date: dinner_date, user_id: user_num, restaurant_id: dinner_reservation.id  )
         #  binding.pry
         puts #####################################################################################
         puts "Cleaning and Sanitizing"
