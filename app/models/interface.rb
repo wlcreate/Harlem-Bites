@@ -344,7 +344,7 @@ class Interface
         # binding.pry
         # guest_saved = guest.user_id
         Reservation.create(party_size: dinner_party, date: dinner_date, user_id: user_num, restaurant_id: dinner_reservation.id  )
-        #  binding.pry
+          binding.pry
         puts #####################################################################################
         puts "=^..^=   =^..^=   =^..^=    =^..^=    =^..^=    =^..^=    =^..^="
         puts "COVID-19 RESTAURANT SAFETY PRECAUTIONS"
