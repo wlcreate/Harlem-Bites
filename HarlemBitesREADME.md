@@ -33,11 +33,11 @@
 ### Getting Started
 To use our CLI app, users will open their terminal and run the following commands:
 
-              ```
+              `
               bundle install
               rake db:seed
               rake start
-              ```
+              `
 
 ### Stack
 1. Ruby
