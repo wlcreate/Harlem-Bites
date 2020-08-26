@@ -6,7 +6,7 @@ Restaurant.reset_pk_sequence
 Reservation.reset_pk_sequence
 
 #User instances
-wavey = User.create(name: "Waverley", phone_number: "(718)986-6758", password: "wavey")
+wavey = User.create(name: "Waverley", phone_number: "(718)555-5555", password: "wavey")
 nunny = User.create(name: "Nunny", phone_number: "(212)222-2222", password: "nico")
 
 #Restaurant instances
