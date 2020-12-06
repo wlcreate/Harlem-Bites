@@ -1,3 +1,5 @@
+# Harlem Bites
+
 ## Table of Contents
 1. About
 2. Features
