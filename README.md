@@ -1,50 +1,122 @@
-## Process
+## Table of Contents
+1. About
+2. Features
+3. Getting Started
+4. Stack
+5. Contributors
+6. Next Steps
 
-### NOTE
-- this setup contains a rakefile with helpful process reminders
+### About
 
-### Setup
-1. Create Gemfile + run `bundle`
-2. Create migrations: run `rake db:create_migration` and add the syntax you need (e.g. `NAME=create_users`)
-3. Migrate: run `rake db:migrate`
-* **REMEMBER** never ever ever change anything in schema.
-4. Go to `.bin/run.rb` and change the name of the app on line 3 AND/OR go to `Rakefile` and change the name of the app on line 15
-5. Go to `./app/models` and change the names of the files (e.g. `User.rb` <- singular) and the class names inside
-6. Set up association macros in classes (`belongs_to` / `has_many` / `has_many, through:`)
-7. Create seed file in `db/seed.rb` + then run `rake db:seed`
-* remember: seeding does not give you any output so no news on your console == good news
-8. Check if you've seeded correctly: run `rake c` and check what's the last instance of any of your class 
-9. Go to `./app/yourAppName.rb` and change that file's name and whatever is inside (the class name should correspond to what you wrote in `.bin/run.rb` on line 3)
+🥂 Harlem Bites is a CLI-based app that allows users to choose different restaurants located in [Harlem, New York City](https://en.wikipedia.org/wiki/Harlem). This app was created with three models using object relationship mapping and have CRUD (create read update delete) abilities.
 
-### Coding
-1. Create a dummy version of your logic -> hardcode it and don't yet make your code save anything to the database, just make sure that the logic works
-2. Test often by running the file or by `binding.pry`
-3. What I fould useful is drowing out every step I want to guide users through before coding - my whiteboard looked like this:
-![](Sunday.jpg)
-4. Then I coded the dummy version (without saving to the database, just to see if all "if"s are working and all that jazz)
-5. Then I added the database manipulations.
-6. Then I beautified the code and the app to make it visually pleasing
+### Features
+🗽 Users are able to shop local and support restaurants that vary in cuisines as NYC navigates reopening during the COVID-19 pandemic.
 
-## APIs
+🗽 When restaurants are selected users will be able to view a snapshot of information detailing the restaurant's name, address, telephone number, general price, hours of operation, cuisine served, how many tables are available, and how many stars it has received.
 
-- [Dad Jokes API Docs](https://icanhazdadjoke.com/api)
-- [Sample API Request](https://icanhazdadjoke.com/api#fetch-a-random-dad-joke)
+🗽 Users are able to make a reservation complying with outdoor dining with COVID-19.
+  Users are able to update their reservation's
+  * party size 
+  * date/time
+  * cancel their reservation
 
-- [More APIs](https://rapidapi.com/collection/cool-apis)
-- [And even more APIs](https://medium.com/@vicbergquist/18-fun-apis-for-your-next-project-8008841c7be9)
+🗽 Users will be able to see the precautions categorized by cleaning, socially distancing, and PPE that taken by the restaurant to keep diners healthy as they make a reservation for dinner.
 
-## Fun Gems For Your Projects
-- `faker` - randomly generated seed data fun
-- `colorize` - colored text output in your terminal
-- `lolcat` - enabling rainbow text coloring
-- `rest-client` - make HTTP requests and get data from APIs
-- `tty-prompt` - nice interface for prompting for user input
-- `formatador` - styling output information into a neat table
-- `artii` - creating text banners
+🗽 Users are able to update their account details
+  * username
+  * phone number
+  * password
+  * delete their account
 
-## Tutorials
-- [Adding animations to your CLI by Sylwia Vargas](https://medium.com/better-programming/add-an-animation-or-a-giph-to-your-ruby-cli-29952e8c46ea)
-- [Adding ASCII Art to your CLI by Sylwia Vargas](https://medium.com/@sylwiavargas/adding-pictures-to-your-ruby-cli-4252b89823a)
-- [Using Time/Date in your CLI by Joel Mendoza](https://medium.com/@joelmendza173/ruby-date-time-for-dummies-9f45518bab64)
+### Getting Started
+To use our CLI app, users will open their terminal and run the following commands:
 
-# Mod1_Restaurant_Reservation_App
+              ```
+              bundle install
+              rake db:seed
+              rake start
+              ```
+
+### Stack
+1. Ruby
+2. Active Record
+3. TTY Prompt
+4. Rake
+5. SQLite3
+
+
+
+### Contributors
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/nunnyr">
+        <img src="https://avatars2.githubusercontent.com/u/22527547?s=460&u=ad9c2d830938168f717cd28941b2f104c6677598&v=4" width="200px;" alt=""/><br/><sub><b>Nunny Reyes</b></sub>
+      </a><br />
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
+      <a href="#ideas-nunny" title="Ideas, Planning, & Feedback">💡</a>            
+    </td>
+
+  <td align="center">
+      <a href="https://github.com/wlcreate">
+        <img src="https://avatars0.githubusercontent.com/u/62153993?s=460&v=4" width="200px;" alt=""/><br/><sub><b>Waverley Leung</b></sub>
+      </a><br />
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
+      <a href="#ideas-waverley" title="Ideas, Planning, & Feedback">💡</a>            
+    </td>
+
+
+  </tr>
+</table>
+
+
+<!-- 
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/wlcreate">
+        <img src="https://avatars0.githubusercontent.com/u/62153993?s=460&v=4" width="200px;" alt=""/><br/><sub><b>Waverley Leung</b></sub>
+      </a><br />
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Code">👩🏻‍💻</a> 
+      <a href="https://github.com/wlcreate/Mod1_Restaurant_Reservation_App" title="Documentation">📚</a> 
+      <a href="#ideas-waverley" title="Ideas, Planning, & Feedback">💡</a>            
+    </td>
+  </tr>
+</table> -->
+
+
+
+
+### Next Steps
+1. We would like to include scraping data from yelp to add a bigger database of restaurants in Harlem. This would lead to more options for users to make a reservation for. 
+
+2. Work on making this model accessible using accessibility tools.
+
+3. Incorporate a 4th model.
+
+4. Create rspec files to test our CLI model.
+
+5. Create migrations/add more columns to our User table to add more account details (pronoun name, email, credit card).
+
+6. Add more additional validation for prompts, music, and animation.
+
+7. Continue to add CLI resources to our README
+
+
+### Acknowledgements
+We would like to thank:
+* Sylwia Vargas
+* Eric Kim
+* Annie Zheng
+* Isabel K. Lee
+* the Code Bender Cohort for their positivity
+ 
+
+### Resources
+1. [Sylwia Vargas' Article on Ruby CLI Art](https://medium.com/@sylwiavargas/adding-pictures-to-your-ruby-cli-4252b89823a)
+2. [TTY Github for Documentation](https://github.com/piotrmurach/tty)
+3. [ASCII Font Creator](http://patorjk.com/software/taag/#p=display&f=Flower%20Power&t=Welcome!)
