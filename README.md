@@ -33,12 +33,11 @@
 
 ### Getting Started
 To use our CLI app, users will open their terminal and run the following commands:
-
-              ```
-              bundle install
-              rake db:seed
-              rake start
-              ```
+1. ```git clone``` to clone down this repository onto your local machine
+2. Run ```bundle install``` to download all the necessary gems
+3. Run ```rake db:migrate``` to create the database
+4. Run ```rake db:seed ``` to seed the database with some data
+5. Run ```rake start``` to start the app!
 
 ### Stack
 1. Ruby
